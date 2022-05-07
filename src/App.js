@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react'
+import Display from './components/Display';
+import { Form } from './components/Form'
 
-function App() {
+const App = () => {
+  const [currMessage, setCurrMessage] = useState("")
+  const [messages, setMessages] = useState([]) 
+
+  const handleNewMessage = (newMessage) =>{
+    setCurrMessage(newMessage)
+    setMessages([...messages, newMessage])
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div >
+      {/* <ParentComponent /> */}
+      <Form onNewMessage = {handleNewMessage}/>
+      <Display currMessage={currMessage} messages={messages}/>
+
+
     </div>
   );
 }
 
-export default App;
+export default App
